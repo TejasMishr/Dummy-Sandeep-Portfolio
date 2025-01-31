@@ -1,9 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Lottie from "lottie-react";
+import dynamic from 'next/dynamic';
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+
+// Dynamically import Lottie with ssr disabled
+const Lottie = dynamic(() => import("lottie-react"), {
+    ssr: false,
+    loading: () => <div className="w-full h-[280px] animate-pulse bg-gray-200 rounded-lg" />
+});
 
 export default function NotFound() {
     const router = useRouter();
